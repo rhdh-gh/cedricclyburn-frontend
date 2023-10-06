@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: cedricclyburn-poi-map-app-dev
+  annotations:
+    argocd/app-name: cedricclyburn-poi-map-app-dev
+    backstage.io/kubernetes-id: cedricclyburn-poi-map-app
+    backstage.io/kubernetes-namespace: cedricclyburn
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: rhdh-gh/cedricclyburn-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.rosa-x4jc7.l07n.p1.openshiftapps.com/dev-pipelines/ns/cedricclyburn/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.rosa-x4jc7.l07n.p1.openshiftapps.com/k8s/ns/cedricclyburn/deployments/cedricclyburn-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.rosa-x4jc7.l07n.p1.openshiftapps.com/#https://github.com/rhdh-gh/cedricclyburn-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://cedricclyburn-poi-map-app-cedricclyburn.apps.rosa-x4jc7.l07n.p1.openshiftapps.com
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/cedricclyburn"
+  system: workshop-system-cedricclyburn
+  consumesApis:
+    - gateway-api-cedricclyburn
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-cedricclyburn
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:default/cedricclyburn"
